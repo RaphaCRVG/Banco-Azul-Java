@@ -1,8 +1,10 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 public class BancoAzul {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Locale.setDefault(Locale.US);
 
         double saldo = 0;
         StringBuilder extrato = new StringBuilder();
@@ -34,18 +36,19 @@ public class BancoAzul {
                 } else {
                     System.out.println("@@@ Operação falhou, o valor informado é invalido @@@");
                 }
-            } else if (menu.equals("s")) {
+            } 
+            else if (menu.equals("s")) {
                 System.out.printf("Informe o valor do saque: R$ ");
                 double valor = scanner.nextDouble();
                 scanner.nextLine();
 
                 if (valor > saldo) {
-                    System.out.println("@@@ A operação falhou! você é pobre demais! @@@");
+                    System.out.println("@@@ A operação falhou! você não tem saldo suficiente! @@@");
                 } else if (valor > limiteValor) {
-                    System.out.println("@@@ Operação falhou! O valor do saque excede o limite @@@");
+                    System.out.println("@@@ Operação falhou! O valor do saque excede o limite! @@@");
                 } else if (numeroSaques >= limiteSaques) {
                     System.out.println(
-                            "@@@ Operação falhou! o numero maximo de saques do dia foi excedido, ta cm dinheiro hein! @@@");
+                            "@@@ Operação falhou! O número máximo de saques diários foi excedido! @@@");
                 } else if (valor > 0) {
                     saldo -= valor;
                     numeroSaques++;
@@ -54,7 +57,8 @@ public class BancoAzul {
                 } else {
                     System.out.println("@@@ Operação falhou! o valor anunciado é invalido @@@");
                 }
-            } else if (menu.equals("e")) {
+            } 
+            else if (menu.equals("e")) {
                 System.out.println("======= EXTRATO =======");
                 if (extrato.length() == 0) {
                     System.out.println("Não foram realizadas movimentações.");
@@ -63,13 +67,16 @@ public class BancoAzul {
                 }
                 System.out.printf("Saldo: R$ %.2f \n", saldo);
                 System.out.println("=======================");
-            } else if (menu.equals("q")) {
+            } 
+            else if (menu.equals("q")) {
                 System.out.println("Obrigado por usar o banco azul!");
                 break;
-            } else {
+            } 
+            else {
                 System.out.println("@@@ Opção inválida, selecione uma opção válida. @@@");
             }
         }
         scanner.close();
     }
 }
+
